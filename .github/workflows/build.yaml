@@ -77,6 +77,7 @@ jobs:
           cpackget update-index 
           
           cpackget add --agree-embedded-license  https://github.com/GorgonMeducer/perf_counter/raw/659eb12026977d81391d90290706f9ac3c8efe7e/cmsis-pack/GorgonMeducer.perf_counter.1.9.11.pack
+          cpackget add --agree-embedded-license  https://github.com/ARM-software/CMSIS-DSP/releases/download/v1.14.2/ARM.CMSIS-DSP.1.14.2.pack
 
           csolution list packs -s audiomark.csolution.yml -m > required_packs.txt
           test -s required_packs.txt && cpackget add -a -f required_packs.txt || echo "Nothing to install"
