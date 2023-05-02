@@ -88,8 +88,29 @@ jobs:
           csolution convert -s audiomark.csolution.yml
           cbuild audiomark_app.Release+FVP.cprj
           
+
+          cbuild testmfcc.Release+FVP.cprj
+          cbuild testanr.Release+FVP.cprj
+          cbuild testaec.Release+FVP.cprj
+          cbuild testkws.Release+FVP.cprj
+          cbuild testabf.Release+FVP.cprj
+
+
       # - name: Perform CodeQL Analysis
       #   uses: github/codeql-action/analyze@v2
+
+      - name: Run Audiomark Unit tests
+        working-directory: ./platform/cmsis      
+        run: |
+          echo "${{env.AVH_PATH}}" >> $GITHUB_PATH
+
+          echo run CS300  
+          /opt/VHT/VHT_MPS3_Corstone_SSE-300 out/testmfcc/FVP/Release/Release+FVP.axf -f configs/model_config_sse300.txt  --stat $*
+          /opt/VHT/VHT_MPS3_Corstone_SSE-300 out/testanr/FVP/Release/Release+FVP.axf -f configs/model_config_sse300.txt  --stat $*
+          /opt/VHT/VHT_MPS3_Corstone_SSE-300 out/testaec/FVP/Release/Release+FVP.axf -f configs/model_config_sse300.txt  --stat $*
+          /opt/VHT/VHT_MPS3_Corstone_SSE-300 out/testkws/FVP/Release/Release+FVP.axf -f configs/model_config_sse300.txt  --stat $*
+          /opt/VHT/VHT_MPS3_Corstone_SSE-300 out/testabf/FVP/Release/Release+FVP.axf -f configs/model_config_sse300.txt  --stat $*
+
 
       - name: Run Audiomark
         working-directory: ./platform/cmsis      

@@ -15,6 +15,7 @@ project:
     - ../../ports/arm/libs/CMSIS-NN/Include
 
   components:
+    - component: perf_counter:Core&Source  
     - component: ARM::CMSIS:CORE
     - component: ARM::CMSIS:NN@4.0.0    
     - component: ARM::CMSIS:DSP&Source@1.14.2
